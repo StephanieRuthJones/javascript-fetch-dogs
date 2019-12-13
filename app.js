@@ -3,15 +3,14 @@ fetch('https://dogs-backend.herokuapp.com/dogs')
     .then(createDogs)
     .catch(error => console.error(error))
 
-const parseJson = response => {
-    response.json()
+function parseJson(response) {
+    return response.json()
 }
-
-const createDogs = dogs => {
+function createDogs(dogs) {
     dogs.forEach(createDogCard)
 }
 
-const createDogCard = dog => {
+function createDogCard(dog) {
     const dogsContainer = document.querySelector('.dogs-container')
     const dogInfo = document.createElement('div')
     dogInfo.classList.add('dog-info')
