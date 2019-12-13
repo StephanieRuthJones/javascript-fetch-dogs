@@ -1,23 +1,26 @@
 fetch('https://dogs-backend.herokuapp.com/dogs')
-    .then(response => response.json())
+    .then(parseJson)
     .then(createDogs)
     .catch(error => console.error(error))
 
-function createDogs(dogs) {
+const parseJson = response => {
+    response.json()
+}
+
+const createDogs = dogs => {
     dogs.forEach(createDogCard)
 }
 
-function createDogCard(dog) {
+const createDogCard = dog => {
     const dogsContainer = document.querySelector('.dogs-container')
     const dogInfo = document.createElement('div')
-    dogInfo.className = 'dog-info'
+    dogInfo.classList.add('dog-info')
     dogInfo.innerHTML = `
             <img src=${dog.image} alt=${dog.id}/>
-            <h1>Name: ${dog.name}</h1>
-            <p>Breed: ${dog.breed}</p>
-            <p>Age: ${dog.age}</p>
+            <h1>${dog.name}</h1>
+            <p>${dog.breed}</p>
+            <p>${dog.age}</p>
         `
     dogsContainer.appendChild(dogInfo)
-    console.log(dogInfo)
 }
 
